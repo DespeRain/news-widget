@@ -1,2 +1,4 @@
 # news-widget
-Widget for news feed 
+Small news feed widget.
+
+Used technologies: native JS. 
