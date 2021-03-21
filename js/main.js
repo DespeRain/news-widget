@@ -40,11 +40,14 @@ let news = [{
 
 let widgetActive = false;
 
+const STATUS_COLOR_DEFAULT = "rgb(148, 206, 240)";
+const STATUS_COLOR_READ = '#fff'
+
 // converts news array item data into HTML
 
 function toHTML(item) {
   return `
-  <div class="message" data-id=${item.id}>
+  <div class="message" data-id=${item.id} style="background-color: ${item.status === 'Прочитано' ? STATUS_COLOR_READ : STATUS_COLOR_DEFAULT}">
   <h2 class="message__title">${item.title}</h2>
   <div class="message__author">${item.author}</div>
   <div class="message__date">${item.date}</div>
@@ -75,7 +78,7 @@ function newsListener(event) {
     const card = event.target.closest('.message');
     if (card) {
       const id = +card.dataset.id
-      card.style.backgroundColor = '#fff';
+      card.style.backgroundColor = STATUS_COLOR_READ;
       card.querySelector('.message__status').innerText = 'Прочитано'
       const item = news.find(n => n.id === id);
       item.status = 'Прочитано';
